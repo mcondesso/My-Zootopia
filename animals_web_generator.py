@@ -21,22 +21,22 @@ def load_data(file_path):
 def get_animals_text(animals_data):
     animal_texts = []
     for animal in animals_data:
-        text = ""
+        text = '<li class="cards__item">'
         name = animal.get("name", None)
         if name:
-            text += f"Name: {name}\n"
+            text += f"Name: {name}<br/>"
         locations = animal.get("locations", None)
         if locations:
-            text += f"Location: {locations[0]}\n"
+            text += f"Location: {locations[0]}<br/>"
         characteristics = animal.get("characteristics", None)
         if characteristics:
             diet = characteristics.get("diet", None)
             if diet:
-                text += f"Diet: {diet}\n"
+                text += f"Diet: {diet}<br/>"
             animal_type = characteristics.get("type", None)
             if animal_type:
-                text += f"Type: {animal_type}\n"
-        animal_texts.append(text)
+                text += f"Type: {animal_type}<br/>"
+        animal_texts.append(text + "</li>")
     return "\n".join(animal_texts)
 
 
