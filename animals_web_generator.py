@@ -1,14 +1,3 @@
-"""Module for loading, processing, and saving animal data from a JSON into an HTML file.
-
-This module provides functions to:
-- Load and parse JSON files.
-- Serialize animal data into HTML.
-- Generate HTML templates for displaying animal data.
-
-Usage:
-python animals_web_generator.py
-"""
-
 import json
 
 
