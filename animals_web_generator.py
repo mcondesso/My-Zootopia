@@ -23,24 +23,25 @@ def get_serialized_animal_data(animal_data):
     name = animal_data.get("name", None)
     if name:
         text += f'<div class="card__title">{name}</div>\n'
-    text += '<p class="card__text">\n'
+    text += '<div class="card__text">\n'
+    text += '<ul>'
     taxonomy = animal_data.get("taxonomy", None)
     if taxonomy:
         scientific_name = taxonomy.get("scientific_name", None)
         if scientific_name:
-            text += f"<strong>Scientific name</strong>: {scientific_name}<br/>\n"
+            text += f"<li><strong>Scientific name</strong>: {scientific_name}<br/></li>\n"
     locations = animal_data.get("locations", None)
     if locations:
-        text += f"<strong>Location</strong>: {locations[0]}<br/>\n"
+        text += f"<li><strong>Location</strong>: {locations[0]}<br/></li>\n"
     characteristics = animal_data.get("characteristics", None)
     if characteristics:
         diet = characteristics.get("diet", None)
         if diet:
-            text += f"<strong>Diet</strong>: {diet}<br/>\n"
+            text += f"<li><strong>Diet</strong>: {diet}<br/></li>\n"
         animal_type = characteristics.get("type", None)
         if animal_type:
-            text += f"<strong>Type</strong>: {animal_type}<br/>\n"
-    text += '</p>\n</li>\n'
+            text += f"<li><strong>Type</strong>: {animal_type}<br/></li>\n"
+    text += '</ul>\n</div>\n</li>\n'
     return text
 
 
