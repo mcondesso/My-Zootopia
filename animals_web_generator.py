@@ -4,9 +4,6 @@ This module provides functions to:
 - Load and parse JSON files.
 - Serialize animal data into HTML.
 - Generate HTML templates for displaying animal data.
-
-Typical usage:
-    python script.py
 """
 
 import json
