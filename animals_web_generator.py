@@ -23,8 +23,13 @@ def get_serialized_animal_data(animal_data):
     name = animal_data.get("name", None)
     if name:
         text += f'<div class="card__title">{name}</div>\n'
-    locations = animal_data.get("locations", None)
     text += '<p class="card__text">\n'
+    taxonomy = animal_data.get("taxonomy", None)
+    if taxonomy:
+        scientific_name = taxonomy.get("scientific_name", None)
+        if scientific_name:
+            text += f"<strong>Scientific name</strong>: {scientific_name}<br/>\n"
+    locations = animal_data.get("locations", None)
     if locations:
         text += f"<strong>Location</strong>: {locations[0]}<br/>\n"
     characteristics = animal_data.get("characteristics", None)
