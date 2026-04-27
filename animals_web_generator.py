@@ -18,26 +18,31 @@ def load_data(file_path):
     return json.loads(load_file(file_path))
 
 
+def get_serialized_animal_data(animal_data):
+    text = '<li class="cards__item">\n'
+    name = animal_data.get("name", None)
+    if name:
+        text += f'<div class="card__title">{name}</div>\n'
+    locations = animal_data.get("locations", None)
+    text += '<p class="card__text">\n'
+    if locations:
+        text += f"<strong>Location</strong>: {locations[0]}<br/>\n"
+    characteristics = animal_data.get("characteristics", None)
+    if characteristics:
+        diet = characteristics.get("diet", None)
+        if diet:
+            text += f"<strong>Diet</strong>: {diet}<br/>\n"
+        animal_type = characteristics.get("type", None)
+        if animal_type:
+            text += f"<strong>Type</strong>: {animal_type}<br/>\n"
+    text += '</p>\n</li>\n'
+    return text
+
+
 def get_animals_html(animals_data):
     animal_texts = []
     for animal in animals_data:
-        text = '<li class="cards__item">\n'
-        name = animal.get("name", None)
-        if name:
-            text += f'<div class="card__title">{name}</div>\n'
-        locations = animal.get("locations", None)
-        text += '<p class="card__text">\n'
-        if locations:
-            text += f"<strong>Location</strong>: {locations[0]}<br/>\n"
-        characteristics = animal.get("characteristics", None)
-        if characteristics:
-            diet = characteristics.get("diet", None)
-            if diet:
-                text += f"<strong>Diet</strong>: {diet}<br/>\n"
-            animal_type = characteristics.get("type", None)
-            if animal_type:
-                text += f"<strong>Type</strong>: {animal_type}<br/>\n"
-        text += '</p>\n</li>\n'
+        text = get_serialized_animal_data(animal)
         animal_texts.append(text)
     return "\n".join(animal_texts)
 
