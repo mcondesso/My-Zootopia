@@ -18,32 +18,34 @@ def load_data(file_path):
     return json.loads(load_file(file_path))
 
 
-def get_animals_text(animals_data):
+def get_animals_html(animals_data):
     animal_texts = []
     for animal in animals_data:
-        text = '<li class="cards__item">'
+        text = '<li class="cards__item">\n'
         name = animal.get("name", None)
         if name:
-            text += f"Name: {name}<br/>"
+            text += f'<div class="card__title">{name}</div>\n'
         locations = animal.get("locations", None)
+        text += '<p class="card__text">\n'
         if locations:
-            text += f"Location: {locations[0]}<br/>"
+            text += f"<strong>Location</strong>: {locations[0]}<br/>\n"
         characteristics = animal.get("characteristics", None)
         if characteristics:
             diet = characteristics.get("diet", None)
             if diet:
-                text += f"Diet: {diet}<br/>"
+                text += f"<strong>Diet</strong>: {diet}<br/>\n"
             animal_type = characteristics.get("type", None)
             if animal_type:
-                text += f"Type: {animal_type}<br/>"
-        animal_texts.append(text + "</li>")
+                text += f"<strong>Type</strong>: {animal_type}<br/>\n"
+        text += '</p>\n</li>\n'
+        animal_texts.append(text)
     return "\n".join(animal_texts)
 
 
 def main():
     animals_data = load_data("animals_data.json")
 
-    animals_text = get_animals_text(animals_data)
+    animals_text = get_animals_html(animals_data)
 
     template_text = load_file("animals_template.html")
 
