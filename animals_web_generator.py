@@ -103,7 +103,8 @@ def main():
         animals_text,
     )
 
-    write_file("animals_template.html", updated_template)
+    write_file("animals.html", updated_template)
+    print("Generated animals.html successfully.")
 
 
 if __name__ == "__main__":
